@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CouponShare - Share & Earn with Coupons</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+        }
+        .coupon-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .coupon-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .modal {
+            display: none;
+        }
+        .modal.open {
+            display: flex;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
+    <!-- Header -->
+    <header class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/a3c918bd-b009-47a8-8438-4dfce74e2996.png" alt="Circular logo with indigo background and white text 'CS' for CouponShare, representing coupon discounts and sharing economy" class="rounded-full" />
+                <h1 class="text-2xl font-bold text-indigo-600">CouponShare</h1>
+            </div>
+            <nav class="hidden md:flex space-x-6">
+                <a href="#home" class="text-gray-700 hover:text-indigo-600 transition">Home</a>
+                <a href="#coupons" class="text-gray-700 hover:text-indigo-600 transition">Coupons</a>
+                <a href="#about" class="text-gray-700 hover:text-indigo-600 transition">About</a>
+                <a href="#contact" class="text-gray-700 hover:text-indigo-600 transition">Contact</a>
+            </nav>
+            <button class="md:hidden bg-indigo-600 text-white px-3 py-2 rounded" onclick="toggleMenu()">Menu</button>
+        </div>
+        <div class="md:hidden bg-indigo-50 p-4" id="mobile-menu" style="display:none;">
+            <a href="#home" class="block py-2 text-gray-700 hover:text-indigo-600">Home</a>
+            <a href="#coupons" class="block py-2 text-gray-700 hover:text-indigo-600">Coupons</a>
+            <a href="#about" class="block py-2 text-gray-700 hover:text-indigo-600">About</a>
+            <a href="#contact" class="block py-2 text-gray-700 hover:text-indigo-600">Contact</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="py-20 bg-indigo-600 text-white text-center">
+        <div class="max-w-4xl mx-auto px-4">
+            <h2 class="text-5xl font-bold mb-6">Unlock Amazing Coupons & Earn Rewards</h2>
+            <p class="text-xl mb-8">Discover exclusive deals from PhonePe, Mamaearth, Lenskart, Domino's, and more. Buy coupon codes at a fraction of their value and enjoy great savings!</p>
+            <button class="bg-white text-indigo-600 px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transition" onclick="scrollToCoupons()">Browse Coupons</button>
+            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/56812f48-48b4-469f-9dac-677c8b2dfd4f.png" alt="Hero banner illustration showing diverse people using mobile phones to access coupons from various brands like food delivery and e-commerce apps" class="mt-10 mx-auto rounded-lg shadow-lg" />
+        </div>
+    </section>
+
+    <!-- Coupons Section -->
+    <section id="coupons" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <h3 class="text-4xl font-bold text-center mb-12 text-gray-800">Available Coupons</h3>
+            <div class="flex justify-center mb-8 space-x-4">
+                <button class="filter-btn bg-indigo-600 text-white px-4 py-2 rounded" data-category="all">All</button>
+                <button class="filter-btn bg-gray-300 text-gray-700 px-4 py-2 rounded" data-category="ecommerce">E-commerce</button>
+                <button class="filter-btn bg-gray-300 text-gray-700 px-4 py-2 rounded" data-category="food">Food</button>
+                <button class="filter-btn bg-gray-300 text-gray-700 px-4 py-2 rounded" data-category="beauty">Beauty</button>
+                <button class="filter-btn bg-gray-300 text-gray-700 px-4 py-2 rounded" data-category="health">Health</button>
+            </div>
+            <div id="coupon-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Mock Coupons -->
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-gray-50">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h3 class="text-4xl font-bold mb-8 text-gray-800">How It Works</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/8859db0c-2f83-41e0-a5a5-0e4039d5ad18.png" alt="Step 1 illustration: Person browsing and collecting coupons from apps, with money symbols and gift icons floating around" class="mx-auto mb-4 rounded" />
+                    <h4 class="text-xl font-semibold mb-4">Collect Coupons</h4>
+                    <p>I earn rewards through transactions on various platforms and collect valuable coupon codes.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/7080293d-7f91-424c-9fd1-8a9615b859f3.png" alt="Step 2 illustration: User selecting and purchasing a coupon on the website, with a digital wallet and transaction icons" class="mx-auto mb-4 rounded" />
+                    <h4 class="text-xl font-semibold mb-4">Sell Access</h4>
+                    <p>You buy the coupon codes at a discount, and I share the code with you instantly.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/4e846ac2-edcc-486f-b378-f113938dff72.png" alt="Step 3 illustration: Happy user redeeming coupon for shopping, with a thumbs up and shopping cart" class="mx-auto mb-4 rounded" />
+                    <h4 class="text-xl font-semibold mb-4">Enjoy Savings</h4>
+                    <p>Use the code to save on your purchases and enjoy the full value of the deal.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-indigo-600 text-white text-center">
+        <div class="max-w-4xl mx-auto px-4">
+            <h3 class="text-4xl font-bold mb-8">Get In Touch</h3>
+            <p class="text-xl mb-8">Have questions? Reach out for more details on coupons or to request a custom offer.</p>
+            <form id="contact-form" class="max-w-md mx-auto">
+                <input type="email" placeholder="Your Email" class="w-full px-4 py-3 mb-4 rounded" required>
+                <textarea placeholder="Message" class="w-full px-4 py-3 mb-4 rounded" rows="4" required></textarea>
+                <button class="w-full bg-white text-indigo-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 text-center">
+        <p>© 2023 CouponShare. All rights reserved. | Privacy Policy | Terms of Use</p>
+    </footer>
+
+    <!-- Purchase Modal -->
+    <div id="purchase-modal" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center modal">
+        <div class="bg-white p-8 rounded-lg max-w-md w-full mx-4">
+            <h4 class="text-2xl font-bold mb-4 text-gray-800">Purchase Coupon</h4>
+            <p id="modal-coupon-details"></p>
+            <form id="purchase-form" class="mt-4">
+                <input type="text" placeholder="Your Name" class="w-full px-4 py-2 border rounded mb-4" required>
+                <input type="email" placeholder="Your Email" class="w-full px-4 py-2 border rounded mb-4" required>
+                <button class="w-full bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition">Simulate Payment</button>
+            </form>
+            <button id="close-modal" class="mt-4 text-gray-600 hover:text-gray-800">Close</button>
+        </div>
+    </div>
+
+    <script>
+        // Mock Coupon Data
+        const coupons = [
+            { id: 1, title: 'PhonePe Cashback', value: '₹200 off', category: 'ecommerce', img: 'https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/f020d08a-bfbe-43f4-8e83-0a0253c482bd.png', alt: 'PhonePe app interface showing cashback offer with money falling animation and user receiving rewards on purchase', description: '₹200 off on any transaction above ₹1000' },
+            { id: 2, title: 'Mamaearth Discount', value: '₹300 off', category: 'beauty', img: 'https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/cac95110-e3af-4a9b-8b28-5637b8bdf35f.png', alt: 'Mamaearth products display on a clean shelf with green plants and natural ingredients symbols', description: '₹300 off on beauty & skincare products' },
+            { id: 3, title: 'Lenskart Deal', value: '₹500 off', category: 'health', img: 'https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/b48eded9-622a-47a5-90cf-5bde2ed17642.png', alt: 'Lenskart eye test room with glasses frames, eye charts, and a customer trying on spectacles', description: '₹500 off on eye wear and glasses' },
+            { id: 4, title: 'Domino\'s Pizza', value: '₹250 off', category: 'food', img: 'https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/ca4d2ec2-2da4-43c4-a6b1-c485ebee1586.png', alt: 'Delicious pizza with toppings, steam rising, isolated on a wooden table with Italian flag colors', description: '₹250 off on large pizza orders' },
+        ];
+
+        // Render Coupons
+        const grid = document.getElementById('coupon-grid');
+        function renderCoupons(filter = 'all') {
+            grid.innerHTML = '';
+            coupons.filter(c => filter === 'all' || c.category === filter).forEach(coupon => {
+                const card = document.createElement('div');
+                card.className = 'coupon-card bg-white p-6 rounded-lg shadow-md fade-in';
+                card.innerHTML = `
+                    <img src="${coupon.img}" alt="${coupon.alt}" class="w-full h-32 object-cover rounded mb-4" />
+                    <h4 class="text-xl font-semibold mb-2">${coupon.title}</h4>
+                    <p class="text-gray-600 mb-4">${coupon.description}</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-2xl font-bold text-green-600">${coupon.value}</span>
+                        <button class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition" onclick="openModal(${coupon.id})">Buy for ₹${(parseInt(coupon.value.slice(1)) * 0.5).toFixed(0)}/-</button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+        renderCoupons();
+
+        // Filter Buttons
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.className = 'filter-btn bg-gray-300 text-gray-700 px-4 py-2 rounded');
+                btn.className = 'filter-btn bg-indigo-600 text-white px-4 py-2 rounded';
+                renderCoupons(btn.dataset.category);
+            });
+        });
+
+        // Modal Functions
+        function openModal(id) {
+            const coupon = coupons.find(c => c.id === id);
+            document.getElementById('modal-coupon-details').textContent = `${coupon.title}: ${coupon.description}. Earn the full ${coupon.value} by using this coupon.`;
+            document.getElementById('purchase-modal').classList.add('open');
+        }
+        document.getElementById('close-modal').addEventListener('click', () => {
+            document.getElementById('purchase-modal').classList.remove('open');
+        });
+
+        // Simulate Purchase
+        document.getElementById('purchase-form').addEventListener('submit', e => {
+            e.preventDefault();
+            alert('Purchase simulated! Coupon code will be emailed shortly.');
+            document.getElementById('purchase-modal').classList.remove('open');
+        });
+
+        // Contact Form
+        document.getElementById('contact-form').addEventListener('submit', e => {
+            e.preventDefault();
+            alert('Message sent! We\'ll get back to you soon.');
+        });
+
+        // Utility Functions
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
+        }
+        function scrollToCoupons() {
+            document.getElementById('coupons').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
+</content>
+</create_file>
